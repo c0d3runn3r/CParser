@@ -1,0 +1,32 @@
+<project>
+
+	<path id="project.class.path">
+	
+		<pathelement location="lib/CadpageParser.jar" />
+	</path>
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac debug="yes" srcdir="src" destdir="build/classes" includeantruntime="false">
+			<classpath refid="project.class.path" />
+		</javac>
+    </target>
+
+    <target name="jar">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/CParser.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="CParser"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run">
+        <java jar="build/jar/CParser.jar" fork="true"/>
+    </target>
+
+</project>
